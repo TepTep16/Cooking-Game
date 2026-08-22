@@ -6,7 +6,6 @@ public class PickUp : MonoBehaviour
     public GameObject player;
     public Transform holdPos;
     public float pickUpRange = 5f;
-   
     private GameObject heldObj;
     private Rigidbody heldObjRb;
     private bool canDrop = true;
