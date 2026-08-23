@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 369398394}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -769,10 +769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8065a4b9d4257d54b8cbafa866064fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
-  playerControls: {fileID: -944628639613478452, guid: 9387c1abff9c10042988007d92222fd1, type: 3}
+  playerControls: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   actionMapName: Player
-  movement: Movement
-  rotation: Rotation
+  movement: Move
+  rotation: Look
   jump: Jump
   sprint: Sprint
 --- !u!4 &1469359582

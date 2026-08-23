@@ -13,7 +13,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float gravityMultiplier = 1.0f;
 
     [Header("Look Parameters")]
-    [SerializeField] private float mouseSensitivity = 0.1f;
+    [SerializeField] private float mouseSensitivity = 0.9f;
+    [SerializeField] private float controllerSensitivity = 140f;
+    [SerializeField] private float controllerSmoothness = 20f;
     [SerializeField] private float upDownLookRange = 80f;
 
     [Header("References")]
@@ -23,6 +25,7 @@ public class FirstPersonController : MonoBehaviour
 
     private Vector3 currentMovement;
     private float verticalRotation;
+    private Vector2 smoothedControllerLook;
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
 
@@ -86,12 +89,36 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleRotation()
     {
-        float mouseXRotation = playerInputHandler.RotationInput.x * mouseSensitivity;
-        float mouseYRotation = playerInputHandler.RotationInput.y * mouseSensitivity;
+        Vector2 lookInput = playerInputHandler.RotationInput;
 
-        ApplyHorizontalRotation(mouseXRotation);
-        ApplyVerticalRotation(mouseYRotation);
+        // Check whether the current look input is coming from a controller
+        if (UnityEngine.InputSystem.Gamepad.current != null &&
+            UnityEngine.InputSystem.Gamepad.current.rightStick.ReadValue().magnitude > 0.01f)
+        {
+            // Smooth the controller input
+            smoothedControllerLook = Vector2.Lerp(
+                smoothedControllerLook,
+                lookInput,
+                controllerSmoothness * Time.deltaTime
+            );
 
+            float controllerXRotation = smoothedControllerLook.x * controllerSensitivity * Time.deltaTime;
+            float controllerYRotation = smoothedControllerLook.y * controllerSensitivity * Time.deltaTime;
+
+            ApplyHorizontalRotation(controllerXRotation);
+            ApplyVerticalRotation(controllerYRotation);
+        }
+        else
+        {
+            // Keep mouse behaviour unchanged
+            smoothedControllerLook = Vector2.zero;
+
+            float mouseXRotation = lookInput.x * mouseSensitivity;
+            float mouseYRotation = lookInput.y * mouseSensitivity;
+
+            ApplyHorizontalRotation(mouseXRotation);
+            ApplyVerticalRotation(mouseYRotation);
+        }
     }
 }
     
