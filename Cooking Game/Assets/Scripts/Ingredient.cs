@@ -1,21 +1,17 @@
 using UnityEngine;
 
-/// <summary>
-/// Attach to any ingredient prefab. Handles being picked up/dropped,
-/// and swapping visual stages as it gets chopped.
-/// </summary>
+
 [RequireComponent(typeof(Collider))]
 public class Ingredient : MonoBehaviour
 {
     [Header("Chop Stages")]
-    [Tooltip("Visual stages of this ingredient, in order. Element 0 = whole/uncut, last element = fully chopped. " +
-             "These should be child GameObjects (different meshes) that this script enables/disables one at a time.")]
+    [Tooltip("The changes in the ingredient game object as it's being chopped by the player. Element 0 = whole/uncut, Element 1 = fully chopped. ")]
     public GameObject[] chopStages;
 
-    [Tooltip("How many right-click hits are needed to advance to the next stage")]
+    [Tooltip("How many rmb clicks are needed to break down the ingredient")]
     public int hitsPerStage = 5;
 
-    [Header("State (read-only, for debugging)")]
+    [Header("(read-only, for debugging)")]
     public bool isFullyChopped = false;
 
     private int currentStageIndex = 0;
@@ -27,8 +23,6 @@ public class Ingredient : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetStageVisuals(0);
     }
-
-    /// <summary>Called by the player when picking this ingredient up.</summary>
     public void PickUp(Transform holdPoint)
     {
         if (rb != null)
@@ -41,8 +35,6 @@ public class Ingredient : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
-
-    /// <summary>Called by the player when dropping. Drops freely into the world with physics.</summary>
     public void Drop(Vector3 worldPosition, Quaternion worldRotation, Transform newParent = null)
     {
         transform.SetParent(newParent);
@@ -55,8 +47,6 @@ public class Ingredient : MonoBehaviour
             rb.useGravity = newParent == null;
         }
     }
-
-    /// <summary>Registers one chop hit. Returns true once fully chopped.</summary>
     public bool Chop()
     {
         if (isFullyChopped) return false;
@@ -79,7 +69,6 @@ public class Ingredient : MonoBehaviour
 
         return isFullyChopped;
     }
-
     private void SetStageVisuals(int index)
     {
         for (int i = 0; i < chopStages.Length; i++)
