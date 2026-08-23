@@ -3,19 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PickUp : MonoBehaviour
 {
-    //This script handles pickup/drop (LMB) and chopping (RMB) for Ingredients,
-    //plus a couple of extra features (layer swap, collision ignore, clip prevention).
-    //Platform placement is NOT handled here - ChoppingPlatform auto-snaps anything
-    //dropped into its trigger zone, so this script doesn't need to know it exists.
-
-    [Header("References")]
+    //This script mainly manages the pickup/drop (LMB) and chopping (RMB) mechanics for Ingredients, plus a few extra features that got added along the way.
     public GameObject player;
     public Transform holdPos;
-
-    [Header("Settings")]
     public float pickUpRange = 5f;
 
-    [Tooltip("Set this to a layer that includes ingredients")]
+    [Tooltip("Layer used for ingredients")]
     public LayerMask interactableLayer;
 
     private Ingredient heldIngredient;
@@ -74,7 +67,6 @@ public class PickUp : MonoBehaviour
 
     private void TryDrop()
     {
-        // Just drop it into the world with physics
         StopClipping();
         DropObject();
     }
@@ -84,9 +76,7 @@ public class PickUp : MonoBehaviour
         if (!TryFindInteractable(out Collider hitCollider)) return;
 
         Ingredient ingredient = hitCollider.GetComponent<Ingredient>();
-
-        // Chop anything you're looking at, as long as it's not the ingredient
-        // currently in your hand (holdPos sits directly in the raycast's path)
+        // this was done to allow the player to cut any ingredient that they're looking at, as long as its not currently in hand.
         if (ingredient != null && ingredient != heldIngredient)
         {
             ingredient.Chop();
@@ -112,7 +102,7 @@ public class PickUp : MonoBehaviour
     private void RestorePhysicalState()
     {
         Physics.IgnoreCollision(heldIngredient.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldIngredient.gameObject.layer = 0;
+        heldIngredient.gameObject.layer = 6;
     }
 
     //might remove this part of the script if it doesnt work, found it off of youtube
