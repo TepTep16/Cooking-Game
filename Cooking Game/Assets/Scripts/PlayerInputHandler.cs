@@ -12,8 +12,8 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string actionMapName = "Player";
 
     [Header("Action Name References")]
-    [SerializeField] private string movement = "Movement";
-    [SerializeField] private string rotation = "Rotation";
+    [SerializeField] private string movement = "Move";
+    [SerializeField] private string rotation = "Look";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
 
