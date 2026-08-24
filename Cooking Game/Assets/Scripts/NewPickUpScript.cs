@@ -8,12 +8,9 @@ public class PickUp : MonoBehaviour
     public Transform holdPos;
     public float pickUpRange = 5f;
 
-    [Tooltip("Layer used for ingredients")]
+    //Layer we're using for the ingredients.
     public LayerMask interactableLayer;
-
-    [Tooltip("Reference to the PlayerInputHandler holding the Pickup/Chop actions")]
     public PlayerInputHandler playerInputHandler;
-
     private Ingredient heldIngredient;
     private bool canDrop = true;
     private int LayerNumber;
