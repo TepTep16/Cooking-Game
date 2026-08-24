@@ -5,15 +5,14 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
     [Header("Chop Stages")]
-    [Tooltip("The changes in the ingredient game object as it's being chopped by the player. Element 0 = whole/uncut, Element 1 = fully chopped. ")]
+    [Tooltip("The changes the 'ingredient' game object makes as it's being chopped by the player. Element 0 = Unchopped, Element 1 = fully chopped")]
     public GameObject[] chopStages;
 
     [Tooltip("How many rmb clicks are needed to break down the ingredient")]
     public int hitsPerStage = 5;
 
-    [Header("(read-only, for debugging)")]
+    //FOR DEBUGGING
     public bool isFullyChopped = false;
-
     private int currentStageIndex = 0;
     private int currentHitCount = 0;
     private Rigidbody rb;
