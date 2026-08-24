@@ -11,6 +11,9 @@ public class PickUp : MonoBehaviour
     [Tooltip("Layer used for ingredients")]
     public LayerMask interactableLayer;
 
+    [Tooltip("Reference to the PlayerInputHandler holding the Pickup/Chop actions")]
+    public PlayerInputHandler playerInputHandler;
+
     private Ingredient heldIngredient;
     private bool canDrop = true;
     private int LayerNumber;
@@ -22,9 +25,7 @@ public class PickUp : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current == null) return;
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (playerInputHandler.PickupAction.WasPressedThisFrame())
         {
             if (heldIngredient == null)
             {
@@ -36,7 +37,7 @@ public class PickUp : MonoBehaviour
             }
         }
 
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (playerInputHandler.ChopAction.WasPressedThisFrame())
         {
             TryChop();
         }
