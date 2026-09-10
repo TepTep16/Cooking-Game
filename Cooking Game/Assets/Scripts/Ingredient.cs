@@ -4,8 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Ingredient : MonoBehaviour
 {
-    [Header("Chop Stages")]
-    [Tooltip("The changes the 'ingredient' game object makes as it's being chopped by the player. Element 0 = Unchopped, Element 1 = fully chopped")]
+    [Header("Identification")]
+    [Tooltip("Used by systems like the Oven to identify what this ingredient is (e.g. \"Tomato\", \"Onion\"). Must match exactly what's typed into the Oven's required ingredient list.")]
+    public string ingredientID;
     public GameObject[] chopStages;
 
     [Tooltip("How many rmb clicks are needed to break down the ingredient")]

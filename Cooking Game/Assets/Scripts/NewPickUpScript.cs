@@ -14,6 +14,7 @@ public class PickUp : MonoBehaviour
     private Ingredient heldIngredient;
     private bool canDrop = true;
     private int LayerNumber;
+    public float throwAmount;
 
     void Start()
     {
