@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9193517657927038679}
   - component: {fileID: 4905106520701842366}
   - component: {fileID: 3988907224922114766}
+  - component: {fileID: 366015794565943665}
   m_Layer: 6
   m_Name: Carrots
   m_TagString: Untagged
@@ -101,6 +102,19 @@ MonoBehaviour:
   - {fileID: 989878243969464788}
   hitsPerStage: 5
   isFullyChopped: 0
+--- !u!114 &366015794565943665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124674074343363624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc26f8e8994fb54eb2de1289ff3fece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodTypes
+  foodType: 0
 --- !u!1001 &107427600160441477
 PrefabInstance:
   m_ObjectHideFlags: 0
