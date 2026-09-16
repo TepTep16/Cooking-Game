@@ -4,21 +4,20 @@ using UnityEngine;
 public class DishUp : MonoBehaviour
 {
     [Header("Recipe")]
-    [Tooltip("Which foodIDs count as correct for this platform. List the same ID multiple times if you need multiples of one type (e.g. \"Soup\", \"Soup\", \"Salad\").")]
-    public List<string> acceptedFoodIDs = new List<string> { "Grilled Cheese", "Soup", "Juice" };
+    [Tooltip("Which foods (foodIDs) are needed for the recipe")]
+    public List<string> acceptedFoodIDs = new List<string> { "Sandwich" };
 
-    [Tooltip("How many correct food items need to be placed before success triggers. Usually matches the size of Accepted Food IDs above.")]
+    [Tooltip("How many food items need to be placed on the platform to count as a win.")]
     public int requiredCount = 3;
 
     [Header("UI")]
-    [Tooltip("The success screen GameObject (e.g. a Canvas or Panel) to activate once enough correct food has been placed.")]
-    public GameObject successScreen;
+    [Tooltip("UI that's activate afterall food items have been placed.")]
+    public GameObject winScreen;
 
     private int correctCount = 0;
     private bool isComplete = false;
 
-    // Tracks which colliders have already been counted, so an object resting on the
-    // platform and generating repeated collision events doesn't get counted twice.
+    // This part of the script tracks the colliders that have already been counted, so an object resting on the platform wont get counted twice (due to repeated collision events).
     private HashSet<Collider> countedColliders = new HashSet<Collider>();
 
     private void OnCollisionEnter(Collision collision)
@@ -46,22 +45,22 @@ public class DishUp : MonoBehaviour
     {
         isComplete = true;
 
-        if (successScreen != null)
+        if (winScreen != null)
         {
-            successScreen.SetActive(true);
+            winScreen.SetActive(true);
         }
     }
 
-    // Call this externally if you want to reuse the platform for another round.
+    // This part should be called externally if there's more than 1 round of the game.
     public void ResetPlatform()
     {
         correctCount = 0;
         isComplete = false;
         countedColliders.Clear();
 
-        if (successScreen != null)
+        if (winScreen != null)
         {
-            successScreen.SetActive(false);
+            winScreen.SetActive(false);
         }
     }
 }
