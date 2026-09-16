@@ -38684,6 +38684,8 @@ MonoBehaviour:
   jumpForce: 5
   gravityMultiplier: 1
   mouseSensitivity: 0.1
+  controllerSensitivity: 140
+  controllerSmoothness: 20
   upDownLookRange: 80
   characterController: {fileID: 723382207}
   mainCamera: {fileID: 1667967400}
@@ -53317,6 +53319,8 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   sprint: Sprint
+  pickup: Pickup
+  chop: Chop
 --- !u!4 &897319780
 Transform:
   m_ObjectHideFlags: 0
@@ -68284,7 +68288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ebb9dda0270334c90f27ea2f2bce5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  Container: {fileID: 250320994}
 --- !u!1 &1204496447
 GameObject:
   m_ObjectHideFlags: 0
@@ -102274,6 +102277,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerInputHandler: {fileID: 897319779}
   throwAmount: 10000
 --- !u!114 &1667967402
 MonoBehaviour:
