@@ -16,7 +16,12 @@ public class Oven : MonoBehaviour
     public float bounceForce = 6f;
     public float bounceUpwardBoost = 0.3f;
 
-   
+    //For Particle effect after cooking
+    [Header("Completion Effect")]
+    [Tooltip("Particle effect prefab instantiated on the cooked food when it spawns. Automatically destroyed after 5 seconds.")]
+    public GameObject completionParticlePrefab;
+
+
 
     [Tooltip("Optional. If set, the completed food will spawn at this point instead of the oven's position.")]
     public Transform foodSpawnPoint;
@@ -101,6 +106,7 @@ public class Oven : MonoBehaviour
         StartCoroutine(SpawnFoodAfterDelay());
     }
 
+    //Modified the SpawnFoodAfterDelay function to integrate smoking effect after cooking is finished.
     private IEnumerator SpawnFoodAfterDelay()
     {
         yield return new WaitForSeconds(spawnDelay);
@@ -109,7 +115,17 @@ public class Oven : MonoBehaviour
         {
             Vector3 spawnPos = foodSpawnPoint != null ? foodSpawnPoint.position : transform.position + Vector3.up;
             Quaternion spawnRot = foodSpawnPoint != null ? foodSpawnPoint.rotation : transform.rotation;
-            Instantiate(completedFoodPrefab, spawnPos, spawnRot);
+
+            GameObject spawnedFood = Instantiate(completedFoodPrefab, spawnPos, spawnRot);
+
+            if (completionParticlePrefab != null)
+            {
+                // Parented to spawnedFood.transform so the effect follows the food if it moves (e.g. gets picked up).
+                GameObject particleInstance = Instantiate(completionParticlePrefab, spawnedFood.transform.position, spawnedFood.transform.rotation, spawnedFood.transform);
+
+                // Destroy(gameObject, delay) schedules removal after 5 seconds without needing a separate coroutine or script.
+                Destroy(particleInstance, 5f);
+            }
         }
     }
 }
