@@ -5,20 +5,16 @@ public class AnxietyManager : MonoBehaviour
     [Tooltip("0 = calm, 1 = fatal anxiety attack.")]
     [Range(0f, 1f)] public float anxietyLevel = 0f;
 
-    [Tooltip("How much the meter rises with each food item that's dropped.")]
+    [Tooltip("How much the anxiety bar increases each time a food item is dropped.")]
     public float increasePerDrop = 0.15f;
-
-    [Tooltip("toggle for recovery over time.")]
     public bool recoverOverTime = true;
 
-    [Tooltip("How much the bar recovers by per second.")]
+    [Tooltip("How much the bar decreases per second.")]
     public float recoveryPerSecond = 0.02f;
 
     [Header("Screen Overlay")]
-    [Tooltip("The canvas overlay that will fade in as the anxiety bar rises.")]
     public CanvasGroup overlayCanvasGroup;
 
-    [Tooltip("The overlay's maximum opaque level (max is 1).")]
     [Range(0f, 1f)] public float maxOverlayAlpha = 0.8f;
 
     [Header("Background Audio")]
@@ -28,7 +24,6 @@ public class AnxietyManager : MonoBehaviour
     [Range(0f, 1f)] public float maxVolume = 1f;
 
     [Header("Lose Condition")]
-    [Tooltip("The UI screen that'll appear when the bar reaches its maximum.")]
     public GameObject loseScreen;
 
     private bool hasLost = false;

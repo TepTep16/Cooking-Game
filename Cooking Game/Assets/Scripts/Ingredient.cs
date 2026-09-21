@@ -5,7 +5,8 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
     [Header("Identification")]
-    [Tooltip("Used by systems like the Oven to identify what this ingredient is (e.g. \"Tomato\", \"Onion\"). Must match exactly what's typed into the Oven's required ingredient list.")]
+    [Tooltip("Used by systems like the Oven to identify what this ingredient is (e.g. a \"Tomato\", \"Onion\")")]
+     
     public string ingredientID;
     public GameObject[] chopStages;
 

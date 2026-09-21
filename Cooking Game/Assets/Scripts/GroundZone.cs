@@ -1,15 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// Put this on the floor/ground collider(s) in your kitchen. Requires a non-trigger
-// Collider, same physics requirements as Platform.cs (OnCollisionEnter needs a
-// non-kinematic Rigidbody on at least one side).
 public class GroundZone : MonoBehaviour
 {
     [Tooltip("Drag the GameObject with the AnxietyManager component onto this slot.")]
     public AnxietyManager anxietyManager;
 
-    // Prevents one dropped item from spiking the meter repeatedly while it settles/jitters on the floor.
+    // This part is to prevent mutiple counts on the anxiety meter if the object remains on the floor
     private HashSet<Collider> countedColliders = new HashSet<Collider>();
 
     private void OnCollisionEnter(Collision collision)

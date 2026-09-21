@@ -7,8 +7,6 @@ public class Oven : MonoBehaviour
     [Header("Recipe")]
     [Tooltip("The ingredientIDs this oven accepts, exactly as typed into each Ingredient's 'Ingredient ID' field. Duplicates are allowed (e.g. \"Onion\", \"Onion\", \"Meat\" needs two onions and a meat).")]
     public List<string> requiredIngredientIDs = new List<string> { "Tomato", "Onion", "Meat" };
-
-    [Tooltip("If true, an ingredient must be fully chopped before the oven will accept it.")]
     public bool requireFullyChopped = true;
 
     [Tooltip("If true, an ingredient still parented to the player's hold point (i.e. still being carried) will be ignored, forcing the player to drop/throw it in instead of just walking up to the oven while holding it.")]
@@ -20,11 +18,11 @@ public class Oven : MonoBehaviour
 
    
 
-    [Tooltip("Optional. Leave this empty to just spawn the finished food directly above the oven — that's the default behavior.")]
+    [Tooltip("Optional. If set, the completed food will spawn at this point instead of the oven's position.")]
     public Transform foodSpawnPoint;
     public GameObject completedFoodPrefab;
 
-    [Tooltip("Delay before the food spawns, so it can line up with the door-opening animation.")]
+   //have to use this part for the visual smoke effect, or a door animation at some point
     public float spawnDelay = 0.5f;
 
     private List<string> remainingIngredientIDs;
@@ -35,7 +33,7 @@ public class Oven : MonoBehaviour
         ResetOven();
     }
 
-    // Call this externally if you want to reuse the oven for another round.
+    // This part must be called externally if the round resets
     public void ResetOven()
     {
         remainingIngredientIDs = new List<string>(requiredIngredientIDs);
@@ -84,7 +82,7 @@ public class Oven : MonoBehaviour
         Rigidbody rb = other.attachedRigidbody;
         if (rb == null) return;
 
-        // In case it's still flagged as held/kinematic, let physics take over so it can actually bounce.
+        // This part allows it to bounce back even if it was kinematic (e.g. being held by the player)
         rb.isKinematic = false;
         rb.useGravity = true;
 
