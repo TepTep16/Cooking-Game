@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9c3172c071c3e429255bfe46cff03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
+  ingredientID: Bread
   chopStages:
   - {fileID: 701244133475874522}
   - {fileID: 6097537426036484375}
