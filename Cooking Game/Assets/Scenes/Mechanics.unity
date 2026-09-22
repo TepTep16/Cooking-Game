@@ -30466,6 +30466,7 @@ MonoBehaviour:
   ignoreWhileHeld: 1
   bounceForce: 6
   bounceUpwardBoost: 0.3
+  completionParticlePrefab: {fileID: 0}
   foodSpawnPoint: {fileID: 724765029}
   completedFoodPrefab: {fileID: 1552071477}
   spawnDelay: 0.5
@@ -64936,7 +64937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DishUp
   acceptedFoodIDs:
   - Sandwich
-  requiredCount: 1
+  requiredCount: 2
   winScreen: {fileID: 1673430627}
 --- !u!43 &1125073873
 Mesh:
@@ -97158,6 +97159,7 @@ MonoBehaviour:
   ignoreWhileHeld: 1
   bounceForce: 6
   bounceUpwardBoost: 0.3
+  completionParticlePrefab: {fileID: 0}
   foodSpawnPoint: {fileID: 724765029}
   completedFoodPrefab: {fileID: 912749704}
   spawnDelay: 0.5
@@ -109323,6 +109325,7 @@ MonoBehaviour:
   ignoreWhileHeld: 1
   bounceForce: 6
   bounceUpwardBoost: 0.3
+  completionParticlePrefab: {fileID: 0}
   foodSpawnPoint: {fileID: 724765029}
   completedFoodPrefab: {fileID: 1552071477}
   spawnDelay: 0.5

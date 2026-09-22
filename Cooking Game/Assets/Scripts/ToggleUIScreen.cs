@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 // Put this on gamemanager
 public class ToggleUIScreen : MonoBehaviour
 {
-    public GameObject uiScreen;
-
-    [Tooltip("If true, Time.timeScale is set to 0 while the screen is open, pausing gameplay physics/animations, and restored to 1 when closed.")]
+    public GameObject uiScreen1;
+    public GameObject uiScreen2;
+    //enable to pause gamplay while screen is open
     public bool pauseGameWhileOpen = false;
 
     void Update()
@@ -15,18 +15,35 @@ public class ToggleUIScreen : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            ToggleScreen();
+            ToggleScreen1();
+        }
+
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            ToggleScreen2();
         }
     }
 
-    private void ToggleScreen()
+    private void ToggleScreen1()
     {
-        if (uiScreen == null) return;
+        if (uiScreen1 == null) return;
 
-        bool isOpening = !uiScreen.activeSelf;
-        uiScreen.SetActive(isOpening);
+        bool isOpening = !uiScreen1.activeSelf;
+        uiScreen1.SetActive(isOpening);
 
         if (pauseGameWhileOpen)
+        {
+            Time.timeScale = isOpening ? 0f : 1f;
+        }
+    }
+
+    private void ToggleScreen2()
+    {
+        if (uiScreen2 == null) return;
+        bool isOpening = !uiScreen2.activeSelf;
+        uiScreen2.SetActive(isOpening);
+
+            if (pauseGameWhileOpen)
         {
             Time.timeScale = isOpening ? 0f : 1f;
         }
