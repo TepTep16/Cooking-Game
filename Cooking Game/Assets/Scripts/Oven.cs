@@ -5,11 +5,8 @@ using UnityEngine;
 public class Oven : MonoBehaviour
 {
     [Header("Recipe")]
-    [Tooltip("The ingredientIDs this oven accepts, exactly as typed into each Ingredient's 'Ingredient ID' field. Duplicates are allowed (e.g. \"Onion\", \"Onion\", \"Meat\" needs two onions and a meat).")]
     public List<string> requiredIngredientIDs = new List<string> { "Tomato", "Onion", "Meat" };
     public bool requireFullyChopped = true;
-
-    [Tooltip("If true, an ingredient still parented to the player's hold point (i.e. still being carried) will be ignored, forcing the player to drop/throw it in instead of just walking up to the oven while holding it.")]
     public bool ignoreWhileHeld = true;
 
     [Header("Bounce Back (incorrect ingredient)")]
@@ -22,8 +19,6 @@ public class Oven : MonoBehaviour
     public GameObject completionParticlePrefab;
 
 
-
-    [Tooltip("Optional. If set, the completed food will spawn at this point instead of the oven's position.")]
     public Transform foodSpawnPoint;
     public GameObject completedFoodPrefab;
 

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 public class GroundZone : MonoBehaviour
 {
-    [Tooltip("Drag the GameObject with the AnxietyManager component onto this slot.")]
     public AnxietyManager anxietyManager;
 
-    // This part is to prevent mutiple counts on the anxiety meter if the object remains on the floor
+    // This is to stop items on the floor from double triggering collisions
     private HashSet<Collider> countedColliders = new HashSet<Collider>();
 
     private void OnCollisionEnter(Collision collision)
