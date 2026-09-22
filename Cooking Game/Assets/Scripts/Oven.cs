@@ -13,10 +13,12 @@ public class Oven : MonoBehaviour
     public float bounceForce = 6f;
     public float bounceUpwardBoost = 0.3f;
 
+
     //For Particle effect after cooking
     [Header("Completion Effect")]
     [Tooltip("Particle effect prefab instantiated on the cooked food when it spawns. Automatically destroyed after 5 seconds.")]
     public GameObject completionParticlePrefab;
+    public float smokeEffectDuration = 3f;
 
 
     public Transform foodSpawnPoint;
@@ -119,7 +121,7 @@ public class Oven : MonoBehaviour
                 GameObject particleInstance = Instantiate(completionParticlePrefab, spawnedFood.transform.position, spawnedFood.transform.rotation, spawnedFood.transform);
 
                 // Destroy(gameObject, delay) schedules removal after 5 seconds without needing a separate coroutine or script.
-                Destroy(particleInstance, 5f);
+                Destroy(particleInstance, smokeEffectDuration);
             }
         }
     }
