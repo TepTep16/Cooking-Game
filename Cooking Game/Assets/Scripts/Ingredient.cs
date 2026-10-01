@@ -13,6 +13,13 @@ public class Ingredient : MonoBehaviour
     [Tooltip("How many rmb clicks are needed to break down the ingredient")]
     public int hitsPerStage = 5;
 
+    // A held ingredient is parented to a hold point, so "has a parent" means "someone is holding it".
+    public bool IsHeld => transform.parent != null;
+
+    //Ensures two enemies do not chase the same object
+    [HideInInspector] public GameObject claimedBy;
+
+
     //FOR DEBUGGING
     public bool isFullyChopped = false;
     private int currentStageIndex = 0;
