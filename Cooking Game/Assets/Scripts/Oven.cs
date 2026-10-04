@@ -28,6 +28,8 @@ public class Oven : MonoBehaviour
 
     private List<string> remainingIngredientIDs;
     private bool isComplete = false;
+    public List<string> RemainingIngredientIDs => remainingIngredientIDs;
+    public bool IsComplete => isComplete;
 
     void Awake()
     {
