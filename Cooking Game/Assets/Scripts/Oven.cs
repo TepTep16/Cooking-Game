@@ -20,10 +20,6 @@ public class Oven : MonoBehaviour
     public GameObject completionParticlePrefab;
     public float smokeEffectDuration = 3f;
 
-    // Every active oven registers itself here, so the enemy can find the nearest one
-    public static readonly List<Oven> AllOvens = new List<Oven>();
-
-
     public Transform foodSpawnPoint;
     public GameObject completedFoodPrefab;
 
@@ -36,21 +32,6 @@ public class Oven : MonoBehaviour
     void Awake()
     {
         ResetOven();
-    }
-    void OnEnable() 
-        { 
-            AllOvens.Add(this); 
-        }
-    void OnDisable() 
-    { 
-        AllOvens.Remove(this); 
-    }
-
-    public bool IsComplete => isComplete;
-
-    public bool NeedsIngredient(string id)
-    {
-        return !isComplete && remainingIngredientIDs.Contains(id);
     }
 
     // This part must be called externally if the round resets
