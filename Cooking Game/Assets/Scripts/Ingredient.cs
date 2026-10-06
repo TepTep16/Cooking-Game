@@ -13,6 +13,7 @@ public class Ingredient : MonoBehaviour
     [Tooltip("How many rmb clicks are needed to break down the ingredient")]
     public int hitsPerStage = 5;
 
+
     //FOR DEBUGGING
     public bool isFullyChopped = false;
     private int currentStageIndex = 0;
