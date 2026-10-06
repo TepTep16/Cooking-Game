@@ -4,16 +4,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyChef : MonoBehaviour
 {
-    private enum State { FindIngredient, GoToIngredient, Chopping, GoToOven, Done }
-
+    private enum State { FindIngredient, GoToIngredient, Chopping, GoToOven, WaitForOven, Done }
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 4f;
     [SerializeField] private float sprintSpeed = 8f;
     [SerializeField] private float sprintDistance = 10f;   // sprint if destination is further than this
     [SerializeField] private float interactDistance = 2f;  // how close counts as "arrived"
 
+    [SerializeField] private float ovenInteractDistance = 0.8f;  // how close to get before dropping
+
     [Header("Chopping")]
     [SerializeField] private float chopInterval = 0.5f;    // seconds between chops
+    [SerializeField] private float dropWaitTime = 2f;   // seconds to wait for the oven to take the ingredient
 
     [Header("References")]
     [SerializeField] private Oven myOven;                  // this chef's OWN oven
@@ -25,6 +27,9 @@ public class EnemyChef : MonoBehaviour
     private Ingredient carried;   // ingredient we're holding
     private float chopTimer;
 
+    private Ingredient dropped;   // the ingredient we just dropped
+    private float waitTimer;
+    private float debugTimer;   //For Debugging
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,7 +52,9 @@ public class EnemyChef : MonoBehaviour
             case State.GoToIngredient: GoToIngredient(); break;
             case State.Chopping: Chop(); break;
             case State.GoToOven: GoToOven(); break;
+            case State.WaitForOven: WaitForOven(); break;
             case State.Done: break;
+
         }
     }
 
@@ -57,6 +64,7 @@ public class EnemyChef : MonoBehaviour
         if (myOven.IsComplete)
         {
             agent.ResetPath();
+            Debug.Log("Pizza complete, chef is done.");     //For Debugging
             state = State.Done;
             return;
         }
@@ -69,11 +77,23 @@ public class EnemyChef : MonoBehaviour
             if (ing.transform.parent != null) continue;                         // held by someone
             if (!myOven.RemainingIngredientIDs.Contains(ing.ingredientID)) continue; // not needed
 
+            if (ing == dropped) continue;   // don't re-grab what we just dropped
+
             float d = Vector3.Distance(transform.position, ing.transform.position);
             if (d < bestDist)
             {
                 bestDist = d;
                 best = ing;
+            }
+        }
+
+        if (best == null)           //For Debugging
+        {
+            debugTimer += Time.deltaTime;
+            if (debugTimer >= 2f)
+            {
+                debugTimer = 0f;
+                Debug.Log("Chef waiting. Oven still needs: " + string.Join(", ", myOven.RemainingIngredientIDs));
             }
         }
 
@@ -96,7 +116,7 @@ public class EnemyChef : MonoBehaviour
 
         MoveTo(target.transform.position);
 
-        if (IsNear(target.transform.position))
+        if (IsNear(target.transform.position, interactDistance))
         {
             agent.ResetPath();
             chopTimer = 0f;
@@ -133,14 +153,38 @@ public class EnemyChef : MonoBehaviour
     // 4. Carry it to my oven and drop it in
     private void GoToOven()
     {
-        MoveTo(myOven.transform.position);
+        Vector3 ovenPos = myOven.transform.position;
+        MoveTo(ovenPos);
 
-        if (IsNear(myOven.transform.position))
+        // The oven may sit on a counter that isn't walkable, so the chef can't always
+        // reach its center. Also count it as arrived when the agent reaches the end of its path.
+        bool reachedPathEnd = !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.1f;
+
+        if (IsNear(ovenPos, ovenInteractDistance) || reachedPathEnd)
         {
             agent.ResetPath();
-            carried.Drop(myOven.transform.position + Vector3.up, Quaternion.identity);
+
+            // Drop at the oven's trigger, not at its pivot
+            Vector3 dropPos = myOven.transform.position + Vector3.up;
+            foreach (Collider c in myOven.GetComponentsInChildren<Collider>())
+            {
+                if (c.isTrigger) { dropPos = c.bounds.center; break; }
+            }
+
+            dropped = carried;
+            carried.Drop(dropPos, Quaternion.identity);
             carried = null;
-            state = State.FindIngredient;   // repeat
+            waitTimer = 0f;
+            state = State.WaitForOven;
+        }
+    }
+    private void WaitForOven()
+    {
+        waitTimer += Time.deltaTime;
+
+        if (dropped == null || waitTimer >= dropWaitTime)
+        {
+            state = State.FindIngredient;
         }
     }
 
@@ -152,10 +196,10 @@ public class EnemyChef : MonoBehaviour
     }
 
     // Ignores height so a tall oven/ingredient doesn't break the check
-    private bool IsNear(Vector3 point)
+    private bool IsNear(Vector3 point, float distance)
     {
         Vector3 a = transform.position; a.y = 0f;
         Vector3 b = point; b.y = 0f;
-        return Vector3.Distance(a, b) <= interactDistance;
+        return Vector3.Distance(a, b) <= distance;
     }
 }
