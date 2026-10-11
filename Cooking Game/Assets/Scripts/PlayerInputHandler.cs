@@ -12,15 +12,21 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string actionMapName = "Player";
 
     [Header("Action Name References")]
-    [SerializeField] private string movement = "Movement";
-    [SerializeField] private string rotation = "Rotation";
+    [SerializeField] private string movement = "Move";
+    [SerializeField] private string rotation = "Look";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
+    [SerializeField] private string pickup = "Pickup";
+    [SerializeField] private string chop = "Chop";
 
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+    private InputAction pickupAction;
+    private InputAction chopAction;
+    public InputAction PickupAction => pickupAction;
+    public InputAction ChopAction => chopAction;
 
     public Vector2 MovementInput {  get; private set; }
     public Vector2 RotationInput { get; private set; }
@@ -35,6 +41,9 @@ public class PlayerInputHandler : MonoBehaviour
         rotationAction = mapReference.FindAction(rotation);
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
+
+        pickupAction = mapReference.FindAction(pickup);
+        chopAction = mapReference.FindAction(chop);
 
         SubscribeActionValuesToInputEvents();
     }

@@ -43,18 +43,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick Up",
+                    "name": "Pickup",
                     "type": "Button",
-                    "id": "8a88c2c9-bf94-45fa-8490-b11956232c8d",
+                    "id": "8cfab771-523e-48e3-a160-5b09fe906a10",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cut",
+                    "name": "Chop",
                     "type": "Button",
-                    "id": "c749d857-e923-4318-a265-77df29ebcc80",
+                    "id": "59a8c948-7711-4754-853b-9f39800939dc",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -119,6 +119,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dbd4a9bf-029b-451a-af92-4febbb51a9e9",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "455dc3c6-99d8-44fc-93b5-b9a450c7c13d",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -130,8 +141,30 @@
                 },
                 {
                     "name": "",
+                    "id": "20abbe64-03fb-4cc1-ace1-2d9402e11653",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9fe92783-7b55-4b04-9709-57694b70ae6f",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ae19980-d5c6-4f79-9d76-e8b5ea7fb9f3",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -152,23 +185,56 @@
                 },
                 {
                     "name": "",
-                    "id": "2b4a43e3-a3b5-4e34-8a93-9ad71719a3c3",
-                    "path": "<Keyboard>/e",
+                    "id": "b847f796-226d-4898-aa64-c379f042bc72",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick Up",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "821aaf06-057e-4511-a6a4-ca447a2f9c26",
+                    "id": "3915f951-9d6b-47fe-b0bd-1b75a02c53a7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pickup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d05918a3-f7e1-454f-8060-f5e53f4cf78b",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pickup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34dcc14c-549c-441f-acf8-e9510ed75d84",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cut",
+                    "action": "Chop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "edcf7fcc-6473-42e2-98a4-42380e624bd8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
