@@ -16,8 +16,12 @@ public class IntroVideoPlayer : MonoBehaviour
     public Key skipKey = Key.Space;
 
     [Header("Gameplay Lockout")]
-    [Tooltip("Scripts that'll be disabled while the video plays.")]
+    [Tooltip("Scripts that'll be disabled while the video plays. Include the player scripts AND EnemyChef.")]
     public MonoBehaviour[] scriptsToDisableDuringVideo;
+
+    [Header("After the video")]
+    [Tooltip("Starts the tutorial dialogue straight after the video")]
+    public TutorialManager tutorial;
 
     private bool hasEnded = false;
 
@@ -67,6 +71,10 @@ public class IntroVideoPlayer : MonoBehaviour
 
         if (videoScreen != null) videoScreen.SetActive(false);
         SetScriptsEnabled(true);
+
+        // The tutorial immediately re-freezes the player and the enemy,
+        // and only releases the enemy once the introduction is finished.
+        if (tutorial != null) tutorial.Begin();
     }
 
     private void SetScriptsEnabled(bool enabledState)
