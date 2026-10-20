@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class AnxietyManager : MonoBehaviour
 {
     [Header("Meter")]
@@ -23,10 +24,18 @@ public class AnxietyManager : MonoBehaviour
     [Range(0f, 1f)] public float minVolume = 0.1f;
     [Range(0f, 1f)] public float maxVolume = 1f;
 
+    [Header("On-Screen Anxiety Meter")]
+    public Slider meterSlider;
+
+    [Tooltip("If true, the meter is hidden while anxiety is at 0 and appears once the player drops something. If false, it's always visible.")]
+    public bool hideMeterAtZero = false;
+
     [Header("Lose Condition")]
     public GameObject loseScreen;
 
     private bool hasLost = false;
+
+    public bool HasLost { get; internal set; }
 
     void Update()
     {
@@ -65,6 +74,15 @@ public class AnxietyManager : MonoBehaviour
         if (backgroundAudioSource != null)
         {
             backgroundAudioSource.volume = minVolume + (maxVolume - minVolume) * anxietyLevel;
+        }
+
+        if (meterSlider != null)
+        {
+            meterSlider.value = anxietyLevel;
+            if (hideMeterAtZero)
+            {
+                meterSlider.gameObject.SetActive(anxietyLevel > 0f);
+            }
         }
     }
 
