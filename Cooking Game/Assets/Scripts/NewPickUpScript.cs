@@ -7,10 +7,7 @@ public class PickUp : MonoBehaviour
     public GameObject player;
     public Transform holdPos;
     public float pickUpRange = 5f;
-    //REMEMBER THIS
-    public float dropDistance = 1.5f;
-    //THIS PART IS FOR WALL BLOCKING, TO AVOID CLIPPING
-    public float dropWallPadding = 0.2f;
+
     //Layer we're using for the ingredients.
     public LayerMask interactableLayer;
     public PlayerInputHandler playerInputHandler;
@@ -94,33 +91,13 @@ public class PickUp : MonoBehaviour
         Physics.IgnoreCollision(ingredient.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
     }
 
-    //REMEMBER THIS
     void DropObject()
     {
-        Vector3 dropPosition = GetDropPosition();
-
         RestorePhysicalState();
-        heldIngredient.Drop(dropPosition, heldIngredient.transform.rotation, null);
+        heldIngredient.Drop(heldIngredient.transform.position, heldIngredient.transform.rotation, null);
         heldIngredient = null;
     }
 
-    //REMEMBER THIS (FOR WALL BLOCKING, TO AVOID CLIPPING)
-    private Vector3 GetDropPosition()
-    {
-        // 0 = old behavior
-        if (dropDistance <= 0f) return heldIngredient.transform.position;
-        Vector3 origin = transform.position;
-        Vector3 direction = transform.forward;
-        //remeber this
-        int mask = ~(1 << LayerNumber);
-        RaycastHit hit;
-        if (Physics.Raycast(origin, direction, out hit, dropDistance, mask, QueryTriggerInteraction.Ignore))
-        {
-            return hit.point - direction * dropWallPadding;
-        }
-
-        return origin + direction * dropDistance;
-    }
     private void RestorePhysicalState()
     {
         Physics.IgnoreCollision(heldIngredient.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
