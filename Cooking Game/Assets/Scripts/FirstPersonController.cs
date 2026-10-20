@@ -21,6 +21,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float upDownLookRange = 80f;
 
     [Header("References")]
+    [SerializeField] private Animator animator;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PlayerInputHandler playerInputHandler;
@@ -35,6 +36,11 @@ public class FirstPersonController : MonoBehaviour
     {
         // load the saved slider value (Awake runs even if this script starts disabled)
         sensitivityMultiplier = PlayerPrefs.GetFloat(SensitivityKey, 1f);
+
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     // Called by the pause-menu slider
@@ -88,6 +94,8 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
         HandleJumping();
+        animator.SetFloat("Speed", playerInputHandler.MovementInput.magnitude);
+
         characterController.Move(currentMovement * Time.deltaTime);
     }
 
