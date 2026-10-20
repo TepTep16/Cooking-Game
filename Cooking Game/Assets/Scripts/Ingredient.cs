@@ -1,14 +1,23 @@
+using System;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Collider))]
 public class Ingredient : MonoBehaviour
 {
+    // Events the tutorial listens to
+    public static event Action<Ingredient> PickedUp;
+    public static event Action<Ingredient> Dropped;
+    public static event Action<Ingredient> FullyChopped;
+
     [Header("Identification")]
     [Tooltip("Used by systems like the Oven to identify what this ingredient is (e.g. a \"Tomato\", \"Onion\")")]
-     
+
     public string ingredientID;
     public GameObject[] chopStages;
+
+    [Tooltip("Untick for things that can never be cut (milk, milkshake, cooked meals...)")]
+    public bool canBeChopped = true;
 
     [Tooltip("How many rmb clicks are needed to break down the ingredient")]
     public int hitsPerStage = 5;
@@ -19,6 +28,9 @@ public class Ingredient : MonoBehaviour
     private int currentStageIndex = 0;
     private int currentHitCount = 0;
     private Rigidbody rb;
+
+    public bool CanChop => canBeChopped && !isFullyChopped && chopStages != null && chopStages.Length > 1;
+    public int CurrentStage => currentStageIndex;
 
     void Awake()
     {
@@ -36,6 +48,7 @@ public class Ingredient : MonoBehaviour
         transform.SetParent(holdPoint);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
+        PickedUp?.Invoke(this);
     }
     public void Drop(Vector3 worldPosition, Quaternion worldRotation, Transform newParent = null)
     {
@@ -48,9 +61,11 @@ public class Ingredient : MonoBehaviour
             rb.isKinematic = newParent != null;
             rb.useGravity = newParent == null;
         }
+        Dropped?.Invoke(this);
     }
     public bool Chop()
     {
+        if (!canBeChopped) return false;
         if (isFullyChopped) return false;
 
         currentHitCount++;
@@ -67,6 +82,7 @@ public class Ingredient : MonoBehaviour
             }
 
             SetStageVisuals(currentStageIndex);
+            if (isFullyChopped) FullyChopped?.Invoke(this);
         }
 
         return isFullyChopped;

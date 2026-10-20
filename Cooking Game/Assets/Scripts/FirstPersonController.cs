@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class FirstPersonController : MonoBehaviour
 {
+    public const string SensitivityKey = "LookSensitivity";
+
     [Header("Movement Speeds")]
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private float sprintMultiplier = 2.0f;
@@ -26,8 +28,21 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 currentMovement;
     private float verticalRotation;
     private Vector2 smoothedControllerLook;
+    private float sensitivityMultiplier = 1f;   // set by the pause-menu slider
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
+    void Awake()
+    {
+        // load the saved slider value (Awake runs even if this script starts disabled)
+        sensitivityMultiplier = PlayerPrefs.GetFloat(SensitivityKey, 1f);
+    }
+
+    // Called by the pause-menu slider
+    public void SetSensitivityMultiplier(float value)
+    {
+        sensitivityMultiplier = Mathf.Clamp(value, 0.1f, 5f);
+        PlayerPrefs.SetFloat(SensitivityKey, sensitivityMultiplier);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -102,23 +117,21 @@ public class FirstPersonController : MonoBehaviour
                 controllerSmoothness * Time.deltaTime
             );
 
-            float controllerXRotation = smoothedControllerLook.x * controllerSensitivity * Time.deltaTime;
-            float controllerYRotation = smoothedControllerLook.y * controllerSensitivity * Time.deltaTime;
+            float controllerXRotation = smoothedControllerLook.x * controllerSensitivity * sensitivityMultiplier * Time.deltaTime;
+            float controllerYRotation = smoothedControllerLook.y * controllerSensitivity * sensitivityMultiplier * Time.deltaTime;
 
             ApplyHorizontalRotation(controllerXRotation);
             ApplyVerticalRotation(controllerYRotation);
         }
         else
         {
-            // Keep mouse behaviour unchanged
             smoothedControllerLook = Vector2.zero;
 
-            float mouseXRotation = lookInput.x * mouseSensitivity;
-            float mouseYRotation = lookInput.y * mouseSensitivity;
+            float mouseXRotation = lookInput.x * mouseSensitivity * sensitivityMultiplier;
+            float mouseYRotation = lookInput.y * mouseSensitivity * sensitivityMultiplier;
 
             ApplyHorizontalRotation(mouseXRotation);
             ApplyVerticalRotation(mouseYRotation);
         }
     }
 }
-    
