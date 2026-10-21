@@ -9,8 +9,6 @@ public class Ingredient : MonoBehaviour
     public static event Action<Ingredient> PickedUp;
     public static event Action<Ingredient> Dropped;
     public static event Action<Ingredient> FullyChopped;
-    // fires on EVERY successful chop hit (used by the cut-line particle effect)
-    public static event Action<Ingredient> Chopped;
 
     [Header("Identification")]
     [Tooltip("Used by systems like the Oven to identify what this ingredient is (e.g. a \"Tomato\", \"Onion\")")]
@@ -71,7 +69,6 @@ public class Ingredient : MonoBehaviour
         if (isFullyChopped) return false;
 
         currentHitCount++;
-        Chopped?.Invoke(this);
 
         if (currentHitCount >= hitsPerStage)
         {
