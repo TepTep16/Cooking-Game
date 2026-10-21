@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Put this on gamemanager
+
 public class ToggleUIScreen : MonoBehaviour
 {
     public GameObject uiScreen1;
     public GameObject uiScreen2;
-    //enable to pause gamplay while screen is open
+    
     public bool pauseGameWhileOpen = false;
 
     void Update()

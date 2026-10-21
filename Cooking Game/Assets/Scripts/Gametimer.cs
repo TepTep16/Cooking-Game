@@ -1,36 +1,16 @@
 using UnityEngine;
 using TMPro;
 
-// Put this on an empty GameObject (e.g. your GameManager).
-// Counts down; if the platform finishes in time the player wins, otherwise the fail screen shows.
 public class GameTimer : MonoBehaviour
 {
-    [Header("Timer")]
-    [Tooltip("How long (seconds) the player has to get every dish onto the platform.")]
+   
     public float timeLimit = 180f;
-
-    [Tooltip("If true, the timer starts as soon as the scene loads. Turn off and call StartTimer() yourself if you want a countdown-in or menu first.")]
     public bool startAutomatically = true;
-
-    [Header("References")]
-    [Tooltip("The Platform the player serves food onto. The timer checks this to see if the round is finished.")]
     public Platform platform;
-
-    [Tooltip("Optional. If the AnxietyManager ends the round first, the timer will stop checking rather than also firing the fail screen afterward.")]
     public AnxietyManager anxietyManager;
-
-    [Header("UI")]
-    [Tooltip("Optional. Text element showing the remaining time.")]
     public TMP_Text timerText;
-
-    [Tooltip("Shown when all food is placed before time runs out.")]
     public GameObject winScreen;
-
-    [Tooltip("Shown when time runs out before all food is placed.")]
     public GameObject failScreen;
-
-    [Header("Pause")]
-    [Tooltip("While ANY of these menus/screens is open (active in the scene), the countdown pauses. Drag in your pause menu, recipe book, controls screen, etc. They should start inactive.")]
     public GameObject[] menusThatPauseTimer;
 
     private bool manuallyPaused = false;
@@ -64,10 +44,10 @@ public class GameTimer : MonoBehaviour
         if (!isRunning || isFinished) return;
         if (anxietyManager != null && anxietyManager.HasLost) return;
 
-        // Hold the clock still while a menu is open (or something paused it by script).
+        
         if (IsPaused) return;
 
-        // Player got everything plated before the clock ran out.
+       
         if (platform != null && platform.IsComplete)
         {
             EndGame(true);
