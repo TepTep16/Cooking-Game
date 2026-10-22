@@ -70,7 +70,7 @@ public class Oven : MonoBehaviour
 
     private void AcceptIngredient(Ingredient ingredient)
     {
-        // Remove only one matching entry, so recipes needing 2x of something work correctly.
+        
         remainingIngredientIDs.Remove(ingredient.ingredientID);
         Destroy(ingredient.gameObject);
 

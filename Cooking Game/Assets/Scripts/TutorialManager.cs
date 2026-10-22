@@ -78,18 +78,21 @@ public class TutorialManager : MonoBehaviour
         steps = new List<Step>
         {
             new Step(mc, "Alright, I've got this. Let's see what ingredients I need."),
-            new Step("", "Walk over to the cheese ingredient lined up near the stove.", waitAfter: "NearCheese"),
+            new Step("", "Walk over to the cheese ingredient on the round-table.", waitAfter: "NearCheese"),
             new Step("", "To pick up an ingredient, use left click on the mouse (or press LT on the Xbox controller).", waitAfter: "Picked"),
-            new Step("", "Place the cheese on the cutting board.", waitAfter: "NearCuttingBoard"),
+            new Step("", "Place the cheese on cutting board near the window.", waitAfter: "NearCuttingBoard"),
             new Step("", "To drop an ingredient, simply use left click on the mouse again (or press LT on the Xbox controller).", waitAfter: "Dropped"),
             new Step("", "Once an ingredient is on a surface, you will be able to chop it. Right click 5 times close to an ingredient to chop it.", waitAfter: "Chopped"),
             new Step("", "Note, only certain ingredients can be chopped. Make sure not to waste your time trying to cut every ingredient you find."),
             new Step("", "Move towards the oven.", waitAfter: "NearOven"),
-            new Step(mc, "I'll make a steak-garlic toast. You can never go wrong with this as a starter."),
-            new Step("", "Above this oven, you are able to see the ingredients needed to create the meal displayed."),
-            new Step("", "The UI above the different equipment indicate the ingredients needed to make certain dishes. To find more ingredients, you will need to explore the area to find the storage room. You are ready to start cooking. All the best!", releaseAfter: true),
+            new Step(mc, "I'll make 2 Pizza's in the blink of an eye!"),
+            new Step("", "To cook a meal, you will need to place the ingredients on the oven."),
+            new Step("", "Once all the ingredients are on the oven, it will start cooking automatically."),
+            new Step("", "In the recipe book (Q), you are able to see the ingredients needed to create the meal displayed."),
+            new Step("", "To find more ingredients, you will need to explore the area to find the pantry."),
+            new Step("", "You are ready to start cooking. All the best!", releaseAfter: true),
             // Plays later, when your oven script calls TutorialManager.Instance.Notify("MealCooked")
-            new Step(mc, "Steak-garlic toast... This brings back memories.", waitBefore: "MealCooked"),
+            new Step(mc, "Pepperoni Pizza... This brings back memories.", waitBefore: "MealCooked"),
         };
     }
 

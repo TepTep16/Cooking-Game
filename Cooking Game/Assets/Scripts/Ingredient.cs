@@ -21,7 +21,17 @@ public class Ingredient : MonoBehaviour
     [Tooltip("Untick for things that can never be cut (milk, milkshake, cooked meals...)")]
     public bool canBeChopped = true;
 
-    [Tooltip("How many rmb clicks are needed to break down the ingredient")]
+    
+    public AudioClip[] chopSounds;
+
+   
+    public AudioClip fullyChoppedSound;
+
+    [Range(0f, 1f)] public float chopVolume = 1f;
+
+    
+    [Range(0f, 0.5f)] public float pitchVariation = 0.1f;
+
     public int hitsPerStage = 5;
 
 
@@ -30,13 +40,20 @@ public class Ingredient : MonoBehaviour
     private int currentStageIndex = 0;
     private int currentHitCount = 0;
     private Rigidbody rb;
-
+    private AudioSource audioSource;
     public bool CanChop => canBeChopped && !isFullyChopped && chopStages != null && chopStages.Length > 1;
     public int CurrentStage => currentStageIndex;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 1f; 
+        }
+        audioSource.playOnAwake = false;
         SetStageVisuals(0);
     }
     public void PickUp(Transform holdPoint)
@@ -87,8 +104,22 @@ public class Ingredient : MonoBehaviour
             SetStageVisuals(currentStageIndex);
             if (isFullyChopped) FullyChopped?.Invoke(this);
         }
-
+        PlayChopSound(isFullyChopped);
         return isFullyChopped;
+    }
+    private void PlayChopSound(bool justFinished)
+    {
+        AudioClip clip = null;
+
+        if (justFinished && fullyChoppedSound != null)
+            clip = fullyChoppedSound;
+        else if (chopSounds != null && chopSounds.Length > 0)
+            clip = chopSounds[UnityEngine.Random.Range(0, chopSounds.Length)];
+
+        if (clip == null || audioSource == null) return;
+
+        audioSource.pitch = 1f + UnityEngine.Random.Range(-pitchVariation, pitchVariation);
+        audioSource.PlayOneShot(clip, chopVolume);
     }
     private void SetStageVisuals(int index)
     {
