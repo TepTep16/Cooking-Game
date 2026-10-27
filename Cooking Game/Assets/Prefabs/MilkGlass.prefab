@@ -138,5 +138,10 @@ MonoBehaviour:
   ingredientID: Milk
   chopStages:
   - {fileID: 3804709309654135730}
+  canBeChopped: 1
+  chopSounds: []
+  fullyChoppedSound: {fileID: 0}
+  chopVolume: 1
+  pitchVariation: 0.1
   hitsPerStage: 5
   isFullyChopped: 1
