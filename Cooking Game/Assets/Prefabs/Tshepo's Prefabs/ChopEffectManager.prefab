@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf987a34107bbd04c89bdf7453cd559a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChopEffectSpawner
-  chopEffect: {fileID: 0}
+  chopEffect: {fileID: 7840483008855426758, guid: 64be5dfebdaa9444d937988024b62a30, type: 3}
   particlesPerChop: 10
