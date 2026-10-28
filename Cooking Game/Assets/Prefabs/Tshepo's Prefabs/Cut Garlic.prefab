@@ -1,0 +1,270 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2778076249941148451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4619722008199053627}
+  m_Layer: 0
+  m_Name: Cut Garlic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4619722008199053627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2778076249941148451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.764, y: 1.247, z: 13.423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3381292751084008502}
+  - {fileID: 6404046229744750724}
+  - {fileID: 5369361018773398839}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2983206677555860445
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4619722008199053627}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.88583916
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.4639925
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -55.29
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_Name
+      value: Garlic_Cut
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+--- !u!4 &3381292751084008502 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+  m_PrefabInstance: {fileID: 2983206677555860445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5551095677111239388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4619722008199053627}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.050000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.001999855
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.018000603
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.13693613
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.44057512
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.88684523
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.025449697
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.331
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 195.43
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -52.248
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_Name
+      value: Garlic_Cut (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+--- !u!4 &5369361018773398839 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+  m_PrefabInstance: {fileID: 5551095677111239388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6869404919139465071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4619722008199053627}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0050001144
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0350008
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6656856
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.2986843
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.60953087
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.31003648
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.129
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 85.496
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -50.99
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+      propertyPath: m_Name
+      value: Garlic_Cut (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+--- !u!4 &6404046229744750724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 25220412cb02fb541b62d3cf3e6bfb24, type: 3}
+  m_PrefabInstance: {fileID: 6869404919139465071}
+  m_PrefabAsset: {fileID: 0}
