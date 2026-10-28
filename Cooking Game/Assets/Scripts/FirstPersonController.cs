@@ -94,7 +94,10 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
         HandleJumping();
-        animator.SetFloat("Speed", playerInputHandler.MovementInput.magnitude);
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", playerInputHandler.MovementInput.magnitude);
+        }
 
         characterController.Move(currentMovement * Time.deltaTime);
     }
