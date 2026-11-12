@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 78dd7f804937c974c8121365ec386f63, type: 3}
       propertyPath: m_Name
-      value: FishFood
+      value: Fish and Chips
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 78dd7f804937c974c8121365ec386f63, type: 3}
       propertyPath: m_Layer
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ingredient
   ingredientID: Fish and Chips
   chopStages: []
-  canBeChopped: 1
+  canBeChopped: 0
   chopSounds: []
   fullyChoppedSound: {fileID: 0}
   chopVolume: 1
