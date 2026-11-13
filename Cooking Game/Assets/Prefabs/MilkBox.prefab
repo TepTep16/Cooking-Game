@@ -155,7 +155,10 @@ MonoBehaviour:
   - {fileID: 1464904508661424494}
   - {fileID: 3804709309654135730, guid: 1df3ee43f7ab9b14f8135ddba5a4431b, type: 3}
   canBeChopped: 1
-  chopSounds: []
+  chopSounds:
+  - {fileID: 8300000, guid: 2117dafbe93cb5f46846285b5afb0ea4, type: 3}
+  - {fileID: 8300000, guid: 2117dafbe93cb5f46846285b5afb0ea4, type: 3}
+  - {fileID: 8300000, guid: 2117dafbe93cb5f46846285b5afb0ea4, type: 3}
   fullyChoppedSound: {fileID: 0}
   chopVolume: 1
   pitchVariation: 0.1

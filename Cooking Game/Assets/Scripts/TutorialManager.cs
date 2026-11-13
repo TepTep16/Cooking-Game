@@ -85,7 +85,7 @@ public class TutorialManager : MonoBehaviour
             new Step("", "Once an ingredient is on a surface, you will be able to chop it. Right click 5 times close to an ingredient to chop it.", waitAfter: "Chopped"),
             new Step("", "Note, only certain ingredients can be chopped. Make sure not to waste your time trying to cut every ingredient you find."),
             new Step("", "Move towards the oven.", waitAfter: "NearOven"),
-            new Step(mc, "I'll make 2 Pizza's in the blink of an eye!"),
+            new Step(mc, "I'll win this competition in the blink of en eye!"),
             new Step("", "To cook a meal, you will need to place the ingredients on the oven."),
             new Step("", "Once all the ingredients are on the oven, it will start cooking automatically."),
             new Step("", "In the recipe book (Q), you are able to see the ingredients needed to create the meal displayed."),
