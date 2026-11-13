@@ -13,6 +13,10 @@ public class Oven : MonoBehaviour
     public float bounceForce = 6f;
     public float bounceUpwardBoost = 0.3f;
 
+    // Smoke that plays while the oven is cooking (at least one ingredient in, meal not finished yet)
+    [Header("Cooking Smoke")]
+    [Tooltip("Particle system that plays while the oven has ingredients in it but the meal isn't finished. Leave 'Play On Awake' OFF on it.")]
+    public ParticleSystem cookingSmoke;
 
     //For Particle effect after cooking
     [Header("Completion Effect")]
@@ -23,13 +27,17 @@ public class Oven : MonoBehaviour
     public Transform foodSpawnPoint;
     public GameObject completedFoodPrefab;
 
-   //have to use this part for the visual smoke effect, or a door animation at some point
+    //have to use this part for the visual smoke effect, or a door animation at some point
     public float spawnDelay = 0.5f;
 
     private List<string> remainingIngredientIDs;
     private bool isComplete = false;
     public List<string> RemainingIngredientIDs => remainingIngredientIDs;
     public bool IsComplete => isComplete;
+
+    // Used by the EnemyChef so it knows when the meal is ready and where it is
+    public GameObject SpawnedFood { get; private set; }
+    public bool FoodWasSpawned { get; private set; }
 
     void Awake()
     {
@@ -41,6 +49,12 @@ public class Oven : MonoBehaviour
     {
         remainingIngredientIDs = new List<string>(requiredIngredientIDs);
         isComplete = false;
+        SpawnedFood = null;
+        FoodWasSpawned = false;
+
+        // Empty oven = no smoke
+        if (cookingSmoke != null)
+            cookingSmoke.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,14 +84,33 @@ public class Oven : MonoBehaviour
 
     private void AcceptIngredient(Ingredient ingredient)
     {
-        
         remainingIngredientIDs.Remove(ingredient.ingredientID);
         Destroy(ingredient.gameObject);
 
         if (remainingIngredientIDs.Count <= 0)
         {
+            // Last ingredient is in: the cooking smoke stops (existing puffs fade out naturally)
+            StopCookingSmoke();
             CompleteRecipe();
         }
+        else
+        {
+            // An ingredient is in but the meal isn't finished: keep the smoke going
+            StartCookingSmoke();
+        }
+    }
+
+    private void StartCookingSmoke()
+    {
+        // Play() on a system that is already playing does nothing, so this is safe to call every time
+        if (cookingSmoke != null)
+            cookingSmoke.Play(true);
+    }
+
+    private void StopCookingSmoke()
+    {
+        if (cookingSmoke != null)
+            cookingSmoke.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     private void BounceBack(Ingredient ingredient, Collider other)
@@ -115,6 +148,7 @@ public class Oven : MonoBehaviour
             Quaternion spawnRot = foodSpawnPoint != null ? foodSpawnPoint.rotation : transform.rotation;
 
             GameObject spawnedFood = Instantiate(completedFoodPrefab, spawnPos, spawnRot);
+            SpawnedFood = spawnedFood;
 
             if (completionParticlePrefab != null)
             {
@@ -125,5 +159,8 @@ public class Oven : MonoBehaviour
                 Destroy(particleInstance, smokeEffectDuration);
             }
         }
+
+        // Tell the chef the oven is finished (even if there was no prefab, so it never gets stuck waiting)
+        FoodWasSpawned = true;
     }
 }
