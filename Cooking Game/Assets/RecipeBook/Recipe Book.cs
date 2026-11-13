@@ -2,34 +2,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-
-/// IMPORTANT: put this script on an object that stays active (e.g. the Canvas or an empty
-/// manager object) - NOT on the book panel itself, or the Q key stops working once it's hidden.
-
 public class RecipeBook : MonoBehaviour
 {
-    [Header("UI")]
-    [Tooltip("The root book object. It's hidden at start and shown when the book opens.")]
+    
     public GameObject bookPanel;
 
-    [Tooltip("One entry per spread, in order. Each is a UI object holding the content for both the left and right page.")]
+   
     public GameObject[] spreads;
 
     public Button previousButton;
     public Button nextButton;
 
-    [Tooltip("Optional - shows e.g. 'Page 1 / 4'")]
+    [Tooltip("e.g. 'Page 1 / 4'")]
     public Text pageCounterText;
 
-    [Header("Input")]
+    
     public Key toggleKey = Key.Q;
-    [Tooltip("Also close the book with Escape")]
+    
     public bool closeWithEscape = true;
 
-    [Header("While Open")]
-    [Tooltip("Scripts to switch off while the book is open, e.g. your mouse look, PickUp, HoverHighlight, AdviceDisplay")]
+  
+    [Tooltip(" This is to pause The mouse look, PickUp, HoverHighlight, AdviceDisplay")]
     public Behaviour[] disableWhileOpen;
-    [Tooltip("Freeze the game (Time.timeScale = 0) while the book is open")]
+    
     public bool pauseGameWhileOpen = false;
 
     private int currentSpread = 0;
@@ -73,7 +68,7 @@ public class RecipeBook : MonoBehaviour
 
     private void SetOpen(bool open)
     {
-        // Remember the cursor/time state only when opening, so we can restore it on close
+        
         if (open && !isOpen)
         {
             previousLockState = Cursor.lockState;
@@ -88,7 +83,7 @@ public class RecipeBook : MonoBehaviour
 
         if (open)
         {
-            // The buttons need a free mouse cursor
+            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             ShowSpread(currentSpread);
