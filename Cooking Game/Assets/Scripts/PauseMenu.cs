@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
    public GameObject Container;
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             if(Time.timeScale == 1)
             {
