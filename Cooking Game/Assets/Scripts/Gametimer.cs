@@ -89,7 +89,7 @@ public class GameTimer : MonoBehaviour
         }
     }
 
-    // True while any listed menu is open, or after PauseTimer() has been called.
+   
     public bool IsPaused => manuallyPaused || IsAnyMenuOpen();
 
     private bool IsAnyMenuOpen()
@@ -113,7 +113,7 @@ public class GameTimer : MonoBehaviour
         manuallyPaused = false;
     }
 
-    // Call this to stop the clock without showing either screen (e.g. the anxiety meter maxed out first).
+    
     public void StopTimer()
     {
         isRunning = false;
